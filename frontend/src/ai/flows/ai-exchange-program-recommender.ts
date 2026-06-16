@@ -22,12 +22,12 @@ const AvailableProgramSchema = z.object({
   // Add other relevant program details if available from the API
 });
 
-export const ExchangeProgramRecommenderInputSchema = ExchangeProgramInputSchema.extend({
+const ExchangeProgramRecommenderInputSchema = ExchangeProgramInputSchema.extend({
   availablePrograms: z.array(AvailableProgramSchema).describe('A list of available AIESEC exchange programs, including their names and descriptions.'),
 });
 export type ExchangeProgramRecommenderInput = z.infer<typeof ExchangeProgramRecommenderInputSchema>;
 
-export const ExchangeProgramRecommenderOutputSchema = z.object({
+const ExchangeProgramRecommenderOutputSchema = z.object({
   recommendations: z.array(z.object({
     programName: z.string().describe('The name of the recommended program.'),
     reasoning: z.string().describe('An explanation of why this program is a good fit for the user, linking to their skills and interests.'),

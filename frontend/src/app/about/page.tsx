@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { apiFetch, MOCK_LCS, LC } from '@/lib/api';
-import { Building2, Calendar, Users, Award } from 'lucide-react';
+import { Building2, Calendar, Users, Award, Globe } from 'lucide-react';
 
 export default async function AboutPage() {
   let lcs: LC[] = MOCK_LCS;

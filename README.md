@@ -72,3 +72,60 @@ To bring the project to life and verify that everything works correctly, here is
 
 ### Step 4: Production Frontend Integration
 * **Goal**: Hand over these APIs to the frontend team so they can build the official user-facing website using this backend as their data source.
+
+---
+---
+
+## Sample Frontend (Added Later)
+
+We imported a **sample frontend application** into the `/frontend` directory to demonstrate how the backend API connects to a real user-facing website. This is a separate Next.js application that runs alongside the backend.
+
+### Tech Stack Used in Frontend
+* **Next.js 15** with App Router and Turbopack
+* **Tailwind CSS** for styling
+* **Radix UI + shadcn/ui** for accessible, polished UI components
+* **Lucide React** for icons
+* **Google Genkit AI** for an AI-powered exchange program recommender feature
+* **React Hook Form + Zod** for form validation
+
+### Frontend Pages
+
+| Page | Route | What It Does |
+|------|-------|--------------|
+| **Home** | `/` | Hero banner, program cards (Global Volunteer, Global Talent, Global Teacher), stats section, testimonial carousel, partner logos, and CTA |
+| **Products** | `/products` | Detailed exchange program listing with benefits and features |
+| **About Us** | `/about` | Organization history, mission, 75+ years legacy stats, and Local Committee cards |
+| **Blog / Events** | `/blog` | Blog post listing with category filters, fetched from backend API |
+| **Members** | `/members` | Active member profiles with LC filtering |
+| **Partners** | `/partners` | Current and past partner organization profiles |
+| **Form** | `/form` | Dynamic multi-step form for Member Registration, Partner Inquiry, and Exchange Application — submits to `POST /api/submit` |
+
+### How the Frontend Connects to the Backend
+* The frontend uses the API helper file at `frontend/src/lib/api.ts` which calls the backend at `http://localhost:3000/api` by default.
+* If the backend is not running, the frontend gracefully falls back to **mock data** so the UI still renders properly.
+* The AI Program Matcher component (`frontend/src/components/sections/ai-matcher.tsx`) uses Google Genkit to recommend exchange programs based on user skills and interests.
+
+### How to Run Both Projects Locally
+
+**Terminal 1 — Backend (port 3000):**
+```bash
+cd aiesec-nepal
+npm run dev
+```
+
+**Terminal 2 — Frontend (port 9002):**
+```bash
+cd aiesec-nepal/frontend
+npm install
+npm run dev
+```
+
+Then visit:
+* Backend Developer Console: `http://localhost:3000`
+* Payload CMS Admin: `http://localhost:3000/admin`
+* Frontend Website: `http://localhost:9002`
+
+### Bugs We Fixed During Import
+1. **Missing `Globe` icon import** in `frontend/src/app/about/page.tsx` — the icon was used in the JSX but never imported from `lucide-react`, causing a `ReferenceError: Globe is not defined` at build time.
+2. **Invalid Server Action exports** in `frontend/src/ai/flows/ai-exchange-program-recommender.ts` — Next.js `'use server'` files can only export async functions. Two Zod schema objects (`ExchangeProgramRecommenderInputSchema` and `ExchangeProgramRecommenderOutputSchema`) were being exported, which broke the build. We made them `const` (non-exported) since they are only used internally.
+3. **Wrong API base URL** in `frontend/src/lib/api.ts` — the default URL was pointing to port `5000`, but our backend runs on port `3000`. Updated to `http://localhost:3000/api`.
