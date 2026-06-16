@@ -1,0 +1,40 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-bg",
+      "description": "Youth leadership and adventure",
+      "imageUrl": "https://picsum.photos/seed/aiesec1/1920/1080",
+      "imageHint": "youth leadership"
+    },
+    {
+      "id": "program-volunteer",
+      "description": "Global Volunteer program",
+      "imageUrl": "https://picsum.photos/seed/aiesec2/800/600",
+      "imageHint": "volunteering community"
+    },
+    {
+      "id": "program-talent",
+      "description": "Global Talent program",
+      "imageUrl": "https://picsum.photos/seed/aiesec3/800/600",
+      "imageHint": "professional internship"
+    },
+    {
+      "id": "program-teacher",
+      "description": "Global Teacher program",
+      "imageUrl": "https://picsum.photos/seed/aiesec4/800/600",
+      "imageHint": "teaching education"
+    },
+    {
+      "id": "member-testimonial-1",
+      "description": "Happy AIESEC member",
+      "imageUrl": "https://picsum.photos/seed/aiesec5/200/200",
+      "imageHint": "smiling youth"
+    },
+    {
+      "id": "partner-logo-1",
+      "description": "Partner Company Logo",
+      "imageUrl": "https://picsum.photos/seed/partner1/300/150",
+      "imageHint": "corporate logo"
+    }
+  ]
+}
