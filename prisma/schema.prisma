@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Form submissions from member, partner, and exchange forms.
+// Blog/events/members/partners/testimonials are managed by Payload CMS.
+model FormSubmission {
+  id        Int      @id @default(autoincrement())
+  type      String // "member" | "partner" | "exchange"
+  data      Json
+  createdAt DateTime @default(now())
+
+  @@index([type])
+  @@map("form_submissions")
+}
